@@ -15,26 +15,31 @@ dbs:
 strategies:
     options: 
         - say "puedo escuchar lo que me quieras contar que te paso el dia de hoy" 
-    configuration: 
+    configuration:
         - say "Hola, soy Wattson tu asistente personal es un placer conocerte, me gustaría saber tu nombre."
-        - input name 
-        - remember name
-        - say "{}, me gusta tu nombre, te doy la bienvenida, a partir de hoy me dedicaré a escuchar todo lo que me quieras contar, ¿Quieres saber qué puedo hacer?".format(name)
+        - input configuration
+        - remember configuration
+        - say "Mucho gusto,{}. ¿Quieres saber qué puedo hacer por ti?".format(configuration)
         - input status
         - if status == "si" then solve options
         - if status == "no" then say "bueno sera para la proxima"
         - say "Me gustaría conocerte un poco antes de iniciar, ¿puedo hacerte unas preguntas?"
         - input status
         - if status == "no" say "de acuerdo" 
-        - if status == "si" then solve data
-    data:
+        - if status == "si" then solve age
+    age:
         - say "¿Que edad tienes?" 
         - input age 
-        - remember age 
-        - say "¿Que estudias?"
+        - remember age
+        - say "¿Estas estudiando?"
+        - input status
+        - if status == "no" say "De acuerdo"
+        - if status == "si" then solve grade
+    grade:
+        - say "¿Qué estudias?"
         - input grade 
         - remember grade
-        - say "gracias"
+        - say "Cool. Gracias"
     excelent:
         - say "me da mucho gusto que estés bien"
     sorry:
@@ -44,7 +49,7 @@ script:
     - solve hello
     - say greeting
     - loop_slots
-    - say "¿como estás hoy {}?".format(name)
+    - say "¿como estás hoy {}, de {} años que estudia {}?".format(configuration,age,grade)
     # - input status | asign bien:good mal:bad
     # - if status == "good" then solve excelent
     # - if status == "bad" then solve sorry
