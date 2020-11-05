@@ -41,18 +41,17 @@ strategies:
         - remember grade
         - say "Cool. Gracias"
     excelent:
-        - say "me da mucho gusto que estés bien"
+        - say "Me da mucho gusto que estés bien :3"
     sorry:
-        - say "siento que no te encuentre bien"
-
+        - say "Lamento que no te encuentres bien :c"   
 script:
-    - solve hello
-    - say greeting
-    - loop_slots
-    - say "¿como estás hoy {}, de {} años que estudia {}?".format(configuration,age,grade)
-    # - input status | asign bien:good mal:bad
-    # - if status == "good" then solve excelent
-    # - if status == "bad" then solve sorry
+     - solve hello
+     - say greeting
+     - loop_slots
+     - say "¿Cómo estás hoy {}, de {} años que estudia {}?".format(configuration,age,grade)
+     - input status | asign bien:good mal:bad
+     - if status == "good" then solve excelent
+     - if status == "bad" then solve sorry
     # - say "Hay algunas cosas que se"
     # - say "hecho {} {}".format(*db['main'][0])
-    # - say "adios {}".format(name)
+     - say "adios {}".format(configuration)
