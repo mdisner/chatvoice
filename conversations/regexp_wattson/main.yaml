@@ -3,7 +3,7 @@ settings:
 
 regex:
     name:
-        - '(mi nombre es|me llamo|soy) (.*)'
+        - '(([Mm][Ii] [Nn][Oo0][Mm][Bb][Rr][Ee] [Ee][SsZz]|[Ee][SsZz]|[Ss][Oo0][YyIi]|[Mm][Ee] (LL|Ll|ll|lL)[Aa][Mm][Oo0]) (\S+)|(.*))'
     #from:
     #    - 'de (?P<ori>.*)'
     status:
@@ -23,7 +23,8 @@ strategies:
 script:
     - solve name
     - say '¿Cuál es tu nombre?'
-    - input name | regex name 2
+    - input name | regex name 4
+    #- if len(name.split(" ")) > 0 then name | regex name 3
     - remember name
     - say 'Quisiera conocerte un poco más, ¿puedo hacerte unas preguntas?'
     - say f'¿Cómo estás hoy, {name}?'
